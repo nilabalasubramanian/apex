@@ -1,0 +1,16 @@
+Before Trigger  -  update,delete,insert (before the things are committed or stored in the database) - To do the operations on the same object
+After Trigger  -   to a related record - update,delete,insert,undelete(restoring the record)
+trigger AccountTrigger on Account(before insert)
+{
+ for(Account acc : Trigger.new)
+ {
+   if(acc.Rating == 'null')
+    {
+      acc.Rating = 'Warm';
+    }
+ }
+}
+Context Variables -> describes exact what the description 
+Trigger.new - contains the list of newly created records
+
+
