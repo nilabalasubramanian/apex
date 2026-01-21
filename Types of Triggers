@@ -13,4 +13,19 @@ trigger AccountTrigger on Account(before insert)
 Context Variables -> describes exact what the description 
 Trigger.new - contains the list of newly created records
 
+                  Trigger.new         Trigger.old      Trigger.newMap       Trigger.oldMap
+Before Insert       yes
+
+Before Update       yes                                yes
+
+Before Delete
+
+After Insert                            yes
+
+After Update                            yes                                     yes
+
+After Delete                            yes                                     yes
+
+After UnDelete     yes                                   yes
+
 
