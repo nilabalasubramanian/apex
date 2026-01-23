@@ -1,1 +1,13 @@
-
+trigger AccountDeleteTrigger on Account(before delete)
+{
+  if(Trigger.isDelete)
+  {
+     for(Account acc : Trigger.old) // u need to fetch the old records
+     {
+        if(acc.customerPriority__c == 'High')
+        {
+            acc.addError('Account With Customer Priority as High cannot be deleted');
+        }
+     }
+  }
+}
