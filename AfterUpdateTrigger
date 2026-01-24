@@ -1,0 +1,20 @@
+trigger AccountUpdate on Account(after update)
+{
+  if(Trigger.isUpdate)
+  {
+    List<Task> taskList = new List<Task>();
+    for(Account acc : Trigger.new)
+    {
+      Trigger accOld = Trigger.oldMap(acc.id);
+      if(accOld.Rating == 'Old' || acc.Rating == 'Warm')
+      {
+         Task t = new Task();
+         t.whatId = acc.id;
+         t.Subject ='Warm to Hot';
+         t.Status = 'Not Started';
+         taskList.add(t);
+      }
+   }
+   insert taskList;
+ }
+}
