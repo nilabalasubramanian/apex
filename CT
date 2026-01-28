@@ -1,0 +1,14 @@
+trigger ContactTrigger on Contact(before insert)
+{
+  for(Contact con : Trigger.new)
+  {
+    if(con.accountId != null)
+    {
+        Account associatedAcc = [SELECT Id,Name from Account WHERE Id=:con.AccountId LIMIT 1];
+        if(associatedAcc.Rating != null)
+        {
+          con.Account_s_Rating = associatedAcc.Rating;
+        }
+     }
+  }
+}
